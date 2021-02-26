@@ -1,0 +1,41 @@
+== Project Loom - Code samples
+
+Samples are divided by package name.
+
+=== hello
+
+Check the ways how to create Virtual Threads and Virtual Thread Pool
+
+=== crash
+
+See how JVM crash if we try to create 1_000_000 threads, and how Virtual Threads handle
+
+=== sync_async
+
+See how synchronous and asynchronous code look. Asynchronous scale but has disadvantages. Structured concurrency scales and don't have disadvantages in Asynchronous APIs.
+
+=== pool
+
+See how Virtual Thread Pools are scalable in terms of blocking operations.
+
+=== perf
+
+See how Virtual Threads are efficient when using blocking operations.
+
+=== props
+
+Hints the parallelism configuration for the Virtual Thread Pool.
+
+=== Slides
+
+link:slides/Project{space}Loom{space}-{space}Scalable{space}Concurrency{space}with{space}Virtual{space}Java{space}Threads.pdf[Project Loom - Scalable Concurrency with Virtual Java Threads]
+
+=== Author
+Rahman Usta
+https://github.com/rahmanusta
+
+=== License
+
+MIT
+
+

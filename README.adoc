@@ -28,7 +28,7 @@ Hints the parallelism configuration for the Virtual Thread Pool.
 
 === Slides
 
-link:slides/Project{space}Loom{space}-{space}Scalable{space}Concurrency{space}with{space}Virtual{space}Java{space}Threads.pdf[Project Loom - Scalable Concurrency with Virtual Java Threads]
+link:https://github.com/rahmanusta/project-loom-samples/blob/master/slides/Project%20Loom%20-%20Scalable%20Concurrency%20with%20Virtual%20Java%20Threads.pdf[Project Loom - Scalable Concurrency with Virtual Java Threads]
 
 === Author
 Rahman Usta

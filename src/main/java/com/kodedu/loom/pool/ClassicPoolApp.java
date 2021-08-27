@@ -21,7 +21,7 @@ public class ClassicPoolApp {
                 .mapToObj(i -> {
                     Runnable runnable = () -> {
                         int millis = ThreadLocalRandom.current().nextInt(0, 100_000);
-                        ThreadUtil.sleep(millis);
+                        ThreadUtil.sleep(millis); // I/O bounded task
                     };
                     return runnable;
                 })

@@ -18,7 +18,7 @@ public class LoomPoolApp {
                 .mapToObj(i -> {
                     Runnable runnable = () -> {
                         int millis = ThreadLocalRandom.current().nextInt(0, 100_000);
-                        ThreadUtil.sleep(millis);
+                        ThreadUtil.sleep(millis); // blocking -> suspend + resume (efficient + scalable)
                     };
                     return runnable;
                 })

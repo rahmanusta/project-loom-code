@@ -11,6 +11,7 @@ public class ThreadPoolApp {
             executor.submit(() -> System.out.println("Hello"));
             executor.submit(() -> System.out.println("World"));
         }
+        System.out.println("All done");
 
     }
 }

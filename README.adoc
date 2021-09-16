@@ -1,6 +1,6 @@
 == Project Loom - Code samples
 
-Samples are divided by package name.
+Code examples are divided by package name and Project Loom Early-Access builds can be downloaded from http://jdk.java.net/loom/
 
 === hello
 

@@ -1,10 +1,12 @@
-package com.kodedu.loom.perf.cpu;
+package com.kodedu.loom.perf;
 
 import com.kodedu.loom.ThreadUtil;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.LongAdder;
+import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LoomPoolApp {
@@ -13,20 +15,19 @@ public class LoomPoolApp {
 
         ThreadUtil.benchmark();
 
-        LongAdder longAdder = new LongAdder();
-
-        IntStream.iterate(10000, i -> i != 0, i -> --i)
+        List<Future> threadList = IntStream.iterate(10000, i -> i != 0, i -> --i)
                 .mapToObj(i -> {
                     Runnable runnable = () -> {
-                        longAdder.add(i); // non-blocking ops
+                        ThreadUtil.sleep(i);
                     };
                     return runnable;
                 })
-                .forEach(executor::submit);
+                .map(executor::submit)
+                .collect(Collectors.toList());
 
+        Thread thread = ThreadUtil.printDoneStats(threadList);
         ThreadUtil.waitAll(executor);
-
-        System.out.println("Sum: " + longAdder.sum());
+        ThreadUtil.waitAll(thread);
 
         ThreadUtil.benchmark();
     }

@@ -25,20 +25,8 @@ public class LoomPoolApp {
                 .map(executor::submit)
                 .collect(Collectors.toList());
 
-        Thread thread = Thread.startVirtualThread(() -> {
-            while (true) {
-                final long count = threadList.stream()
-                        .filter(Future::isDone)
-                        .count();
-                System.out.println("Done: " + count + " threads");
-                ThreadUtil.sleepNoMessage(1000);
-                if (count == threadList.size()) {
-                    break;
-                }
-            }
-        });
-
-        ThreadUtil.waitAll(threadList);
+        Thread thread = ThreadUtil.printDoneStats(threadList);
+        ThreadUtil.waitAll(executor);
         ThreadUtil.waitAll(thread);
     }
 }

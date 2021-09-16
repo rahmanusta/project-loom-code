@@ -1,4 +1,4 @@
-package com.kodedu.loom.perf;
+package com.kodedu.loom.perf.io;
 
 import com.kodedu.loom.ThreadUtil;
 
@@ -9,26 +9,25 @@ import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-/*
-Classic pools are not scalable for I/O (for blocking ops)
- */
-public class ClassicPoolApp {
+public class LoomPoolApp {
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(8);
+        ExecutorService executor = Executors.newVirtualThreadExecutor();
 
         ThreadUtil.benchmark();
 
         List<Future> threadList = IntStream.iterate(10000, i -> i != 0, i -> --i)
                 .mapToObj(i -> {
                     Runnable runnable = () -> {
-                        ThreadUtil.sleep(i); // blocking ops
+                        ThreadUtil.sleep(i);
                     };
                     return runnable;
                 })
                 .map(executor::submit)
                 .collect(Collectors.toList());
 
-        ThreadUtil.waitAll(threadList);
+        Thread thread = ThreadUtil.printDoneStats(threadList);
+        ThreadUtil.waitAll(executor);
+        ThreadUtil.waitAll(thread);
 
         ThreadUtil.benchmark();
     }

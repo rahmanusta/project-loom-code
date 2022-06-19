@@ -7,7 +7,7 @@ public class ThreadPoolApp {
 
     public static void main(String[] args) {
 
-        try (final ExecutorService executor = Executors.newVirtualThreadExecutor()) {
+        try (final ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
             executor.submit(() -> System.out.println("Hello"));
             executor.submit(() -> System.out.println("World"));
         }

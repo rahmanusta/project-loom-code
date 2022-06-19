@@ -11,7 +11,7 @@ public class LoomStructeredApp {
     public static void main(String[] args) {
 
         ThreadUtil.benchmark();
-        try (ExecutorService executor = Executors.newVirtualThreadExecutor();) {
+        try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();) {
             executor.submit(() -> requestService("Service 1"));
             executor.submit(() -> requestService("Service 3"));
             Future<String> future = executor.submit(() -> requestService("Service 2"));

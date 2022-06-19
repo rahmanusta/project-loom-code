@@ -10,6 +10,11 @@ Check the ways how to create Virtual Threads and Virtual Thread Pool
 
 See how JVM crash if we try to create 1_000_000 threads, and how Virtual Threads handle
 
+----
+Exception in thread "main" java.lang.OutOfMemoryError:
+unable to create native thread: possibly out of memory or process/resource limits reached
+----
+
 === sync_async
 
 See how synchronous and asynchronous code look. Asynchronous scale but has disadvantages. Structured concurrency scales and don't have disadvantages in Asynchronous APIs.

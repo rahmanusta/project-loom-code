@@ -9,7 +9,7 @@ public class PoolApp {
 
     public static void main(String[] args) {
 
-        try (ExecutorService executorService = Executors.newVirtualThreadExecutor();) {
+        try (ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();) {
             executorService.submit(() -> {
                 ThreadUtil.sleep(3000);
                 System.out.println("first done");

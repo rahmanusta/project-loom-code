@@ -11,14 +11,14 @@ import java.util.stream.IntStream;
 
 public class LoomPoolApp {
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newVirtualThreadExecutor();
+        ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
 
         ThreadUtil.benchmark();
 
         List<Future> threadList = IntStream.iterate(10000, i -> i != 0, i -> --i)
                 .mapToObj(i -> {
                     Runnable runnable = () -> {
-                        ThreadUtil.sleep(i);
+                        ThreadUtil.sleep(i); // block = pause - (sleep)> continue // Os trhead will not block
                     };
                     return runnable;
                 })

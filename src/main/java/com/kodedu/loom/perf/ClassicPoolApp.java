@@ -21,7 +21,7 @@ public class ClassicPoolApp {
         List<Future> threadList = IntStream.iterate(10000, i -> i != 0, i -> --i)
                 .mapToObj(i -> {
                     Runnable runnable = () -> {
-                        ThreadUtil.sleep(i); // blocking ops
+                        ThreadUtil.sleep(i); // I/O - blocking ops
                     };
                     return runnable;
                 })

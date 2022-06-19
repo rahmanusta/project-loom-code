@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 public class LoomPoolApp {
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newVirtualThreadExecutor();
+        ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
 
         List<Future> threadList = IntStream.range(1, 1_000_000)
                 .mapToObj(i -> {

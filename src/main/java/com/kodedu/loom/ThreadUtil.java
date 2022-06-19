@@ -1,6 +1,7 @@
 package com.kodedu.loom;
 
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +42,13 @@ public class ThreadUtil {
 
     public static void waitAll(Collection<Future> threadList) {
         for (Future future : threadList) {
-            future.join();
+            try {
+                future.get();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
